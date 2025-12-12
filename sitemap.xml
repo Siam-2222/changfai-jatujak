@@ -1,10 +1,13 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
   <url>
     <loc>https://siam-2222.github.io/changfai-jatujak/</loc>
     <changefreq>weekly</changefreq>
-    <priority>1.0>
+    <priority>1.0</priority>
+
     <image:image>
       <image:loc>https://siam-2222.github.io/changfai-jatujak/images/work1.jpg</image:loc>
       <image:caption>ช่างไฟฟ้า มีนบุรี – ตัวอย่างงาน 1</image:caption>
@@ -25,5 +28,7 @@
       <image:loc>https://siam-2222.github.io/changfai-jatujak/images/work5.jpg</image:loc>
       <image:caption>ช่างไฟฟ้า มีนบุรี – ตัวอย่างงาน 5</image:caption>
     </image:image>
+
   </url>
+
 </urlset>
