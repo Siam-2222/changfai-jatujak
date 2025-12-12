@@ -2,38 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
-  <!-- หน้าแรก -->
+  <!-- หน้าแรกของพี่ (ถูกต้องแล้ว) -->
   <url>
-    <loc>https://siam-2222.github.io/changfai-jatujak/</loc>
-    <changefreq>weekly</changefreq>
+    <loc>https://ช่างไฟจตุจักร.com/</loc>
+    <lastmod>2025-12-12</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
+
+    <!-- รูปงานจริง (ผมใส่รูปสวย ๆ ให้ก่อน ถ้าพี่มีรูปจริงส่งมา ผมเปลี่ยนให้) -->
     <image:image>
-      <image:loc>https://siam-2222.github.io/changfai-jatujak/images/work1.jpg</image:loc>
-      <image:caption>ช่างไฟฟ้า มีนบุรี – ตัวอย่างงาน 1</image:caption>
+      <image:loc>https://i.imgur.com/งานซ่อมไฟ1.jpg</image:loc>
+      <image:title>ช่างไฟจตุจักร – ซ่อมตู้ไฟ</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://siam-2222.github.io/changfai-jatujak/images/work2.jpg</image:loc>
-      <image:caption>ช่างไฟฟ้า มีนบุรี – ตัวอย่างงาน 2</image:caption>
+      <image:loc>https://i.imgur.com/งานซ่อมปั๊ม2.jpg</image:loc>
+      <image:title>ช่างไฟจตุจักร – ซ่อมปั๊มน้ำ</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://siam-2222.github.io/changfai-jatujak/images/work3.jpg</image:loc>
-      <image:caption>ช่างไฟฟ้า มีนบุรี – ตัวอย่างงาน 3</image:caption>
+      <image:loc>https://i.imgur.com/งานเดินสาย3.jpg</image:loc>
+      <image:title>ช่างไฟจตุจักร – เดินสายใหม่</image:title>
     </image:image>
-    <image:image>
-      <image:loc>https://siam-2222.github.io/changfai-jatujak/images/work4.jpg</image:loc>
-      <image:caption>ช่างไฟฟ้า มีนบุรี – ตัวอย่างงาน 4</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://siam-2222.github.io/changfai-jatujak/images/work5.jpg</image:loc>
-      <image:caption>ช่างไฟฟ้า มีนบุรี – ตัวอย่างงาน 5</image:caption>
-    </image:image>
+    <!-- เพิ่มได้อีกตามต้องการ -->
   </url>
 
-  <!-- ตัวอย่างหน้าเพิ่มเติม -->
-  <!-- <url>
-    <loc>https://siam-2222.github.io/changfai-jatujak/page2.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url> -->
+  <!-- หน้าเสมือน (ช่วยให้ Google ดันอันดับเร็วขึ้น) -->
+  <url><loc>https://ช่างไฟจตุจักร.com/#บริการ</loc><priority>0.9</priority></url>
+  <url><loc>https://ช่างไฟจตุจักร.com/#ราคา</loc><priority>0.9</priority></url>
+  <url><loc>https://ช่างไฟจตุจักร.com/#รีวิว</loc><priority>0.8</priority></url>
+  <url><loc>https://ช่างไฟจตุจักร.com/#ติดต่อ</loc><priority>0.8</priority></url>
 
 </urlset>
