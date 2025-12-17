@@ -18,45 +18,60 @@
   <meta name="twitter:image" content="https://i.postimg.cc/94tBnpyc/lisence1.jpg">
   <style>
     body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f6f7fb; }
-    header { background:#0033a0; color:white; padding:20px; text-align:center; }
-    h1 { margin:0; font-size:26px; }
-    h2 { margin-top:0; }
-    .btn { display:block; padding:15px; margin:15px; text-align:center; border-radius:10px; font-size:20px; color:white; text-decoration:none; }
+    .hero-header { 
+      background: linear-gradient(to bottom, #ff8c00 0%, #0033a0 50%, #ffffff 100%); /* ส้ม → น้ำเงิน → ขาว ไล่เฉดสวย */
+      height: 500px; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: center; 
+      align-items: center; 
+      text-align: center; 
+      color: white; 
+      position: relative; 
+      overflow: hidden;
+    }
+    .hero-header::before { 
+      content: ""; 
+      position: absolute; 
+      top: 0; left: 0; right: 0; bottom: 0; 
+      background-image: url('https://i.postimg.cc/94tBnpyc/lisence1.jpg'), url('https://thumbs.dreamstime.com/b/electrician-tools-isolated-white-background-electrician-tools-set-multimeter-construction-tape-electrical-tape-screwdrivers-285031399.jpg'); 
+      background-size: 50%, 40%; 
+      background-position: left bottom, right bottom; 
+      background-repeat: no-repeat, no-repeat;
+      opacity: 0.6; /* ทับเบา ๆ ให้เห็นเครื่องมือ + บัตรชัด */
+    }
+    .hero-content { position: relative; z-index: 1; padding: 20px; }
+    h1 { margin:0; font-size:40px; text-shadow: 3px 3px 10px #000; }
+    .hero-content p { font-size:24px; margin:10px 0; text-shadow: 2px 2px 8px #000; }
+    .btn { display:block; padding:18px; margin:20px auto; text-align:center; border-radius:50px; font-size:22px; color:white; text-decoration:none; width:90%; max-width:350px; box-shadow:0 6px 15px rgba(0,0,0,0.3); }
     .call { background:#d63031; }
     .line { background:#2ecc71; }
-    .section { background:white; margin:15px; padding:15px; border-radius:10px; }
-    ul { padding-left:18px; }
+    .section { background:white; margin:15px; padding:20px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); }
+    ul { padding-left:20px; font-size:18px; }
     #gallery div { display:flex; flex-wrap:wrap; justify-content:center; gap:15px; margin-top:20px; }
-    #gallery img { width:100%; max-width:300px; border-radius:10px; }
-    iframe { width:100%; height:300px; border:0; border-radius:10px; }
-    .license-section { background:#e8f5e8; padding:20px; text-align:center; border-radius:10px; margin:15px; border:2px solid #0033a0; }
-    .license-img { width:100%; max-width:500px; height:auto; object-fit:contain; border:3px solid #0033a0; border-radius:12px; margin:15px 0; box-shadow:0 6px 15px rgba(0,0,0,0.15); background:#fff; padding:10px; cursor:zoom-in; }
+    #gallery img { width:100%; max-width:300px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); }
+    iframe { width:100%; height:350px; border:0; border-radius:10px; }
     @media (max-width:600px) {
-      h1 { font-size:22px; }
-      h2 { font-size:18px; }
-      .btn { font-size:16px; padding:12px; }
+      .hero-header { height: 400px; }
+      h1 { font-size:32px; }
+      .hero-content p { font-size:20px; }
+      .btn { font-size:18px; padding:15px; }
       #gallery img { max-width:45%; }
-      .license-img { max-width:100%; padding:5px; }
+      .hero-header::before { background-size: 60%, 50%; background-position: left bottom, right bottom; }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Good Service ช่างไฟฟ้า มีนบุรี ซ่อมด่วน</h1>
-  <p>ประสบการณ์กว่า 30 ปี • ซ่อมไฟฟ้า บ้าน อาคาร ระบบน้ำ และปั๊มน้ำทั่วกรุงเทพฯ และปริมณฑล</p>
-  <p>สถานที่ตั้งร้าน: โครงการจตุจักร 2 เขตมีนบุรี กรุงเทพฯ</p>
-  <p>เวลารับงาน: 07.00–18.00 น.</p>
-</header>
-
-<!-- ส่วนใบรับรองเด่น ๆ (ลูกค้าเปิดเว็บมาเห็นทันที) -->
-<div class="section license-section">
-  <h2>ใบรับรองและความน่าเชื่อถือ</h2>
-  <p>ช่างไฟฟ้ามืออาชีพ มีใบอนุญาตประกอบวิชาชีพช่างไฟฟ้าภายในอาคาร</p>
-  <p><strong>มั่นใจได้ในคุณภาพและความปลอดภัยทุกงาน</strong></p>
-  <p>(กดที่รูปเพื่อซูมดูรายละเอียดใบอนุญาต)</p>
-  <img src="https://i.postimg.cc/94tBnpyc/lisence1.jpg" alt="ใบอนุญาตประกอบวิชาชีพช่างไฟฟ้า หน้า 1" class="license-img">
-  <img src="https://i.postimg.cc/67N0cS4W/lisence2.jpg" alt="ใบอนุญาตประกอบวิชาชีพช่างไฟฟ้า หน้า 2" class="license-img">
+<!-- Hero Header – พื้นหลังไล่สีส้ม-น้ำเงิน-ขาว + รูปบัตร license + เครื่องมือวัดไฟเด่น ๆ -->
+<div class="hero-header">
+  <div class="hero-content">
+    <h1>Good Service ช่างไฟฟ้า มีนบุรี ซ่อมด่วน</h1>
+    <p>ช่างไฟฟ้ามืออาชีพ มีใบอนุญาตประกอบวิชาชีพ</p>
+    <p>ประสบการณ์กว่า 30 ปี • ซ่อมไฟฟ้า บ้าน อาคาร ระบบน้ำ และปั๊มน้ำ</p>
+    <p>สถานที่ตั้งร้าน: โครงการจตุจักร 2 เขตมีนบุรี กรุงเทพฯ</p>
+    <p>เวลารับงาน: 07.00–18.00 น.</p>
+  </div>
 </div>
 
 <a href="tel:+66818527554" class="btn call">📞 โทรเลย: 081-852-7554</a>
