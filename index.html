@@ -6,175 +6,77 @@
   <title>Good Service ช่างไฟฟ้า มีนบุรี ซ่อมด่วน</title>
   <meta name="description" content="Good Service ช่างไฟฟ้า มีนบุรี ซ่อมด่วน ประสบการณ์กว่า 30 ปี ซ่อมไฟฟ้า ปั๊มน้ำ พัดลม">
   <meta name="robots" content="index, follow">
-
+  <!-- Meta Social Preview -->
   <meta property="og:title" content="Good Service ช่างไฟฟ้า มีนบุรี ซ่อมด่วน">
   <meta property="og:description" content="บริการช่างไฟฟ้า มีนบุรี ซ่อมไฟฟ้า ระบบน้ำ ปั๊มน้ำในบ้าน พร้อมรีวิวลูกค้า">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ช่างไฟจตุจักร.com/">
   <meta property="og:image" content="https://i.postimg.cc/94tBnpyc/lisence1.jpg">
-
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Good Service ช่างไฟฟ้า มีนบุรี ซ่อมด่วน">
   <meta name="twitter:description" content="บริการช่างไฟฟ้า มีนบุรี ซ่อมไฟฟ้า ระบบน้ำ ปั๊มน้ำในบ้าน">
   <meta name="twitter:image" content="https://i.postimg.cc/94tBnpyc/lisence1.jpg">
-
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f6f7fb;
-      line-height: 1.6;
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f6f7fb; }
+    .hero-header { 
+      background: linear-gradient(to bottom, #ff8c00 0%, #0033a0 70%, #ffffff 100%);
+      height: 500px; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: center; 
+      align-items: center; 
+      text-align: center; 
+      color: white; 
+      position: relative; 
+      overflow: hidden;
     }
-
-    /* ===== HERO HEADER (โครงสร้างเดิมทั้งหมด) ===== */
-    .hero-header {
-      background: linear-gradient(to bottom, #ff8c00 0%, #0033a0 50%, #ffffff 100%);
-      min-height: 450px; 
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: #fff;
-      position: relative;
-      padding: 40px 15px;
-      box-sizing: border-box;
-    }
-
-    .hero-header::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: 
-        url("https://i.postimg.cc/94tBnpyc/lisence1.jpg"), 
-        url("https://thumbs.dreamstime.com/b/electrician-tools-isolated-white-background-electrician-tools-set-multimeter-construction-tape-electrical-tape-screwdrivers-285031399.jpg");
+    .hero-header::before { 
+      content: ""; 
+      position: absolute; 
+      top: 0; left: 0; right: 0; bottom: 0; 
+      background-image: url('https://i.postimg.cc/94tBnpyc/lisence1.jpg'), url('https://thumbs.dreamstime.com/b/electrician-tools-isolated-white-background-electrician-tools-set-multimeter-construction-tape-electrical-tape-screwdrivers-285031399.jpg'); 
+      background-size: 50%, 45%; 
+      background-position: left center, right center; 
       background-repeat: no-repeat, no-repeat;
-      background-size: 40%, 25%;
-      background-position: left bottom, right bottom;
-      /* 👉 จุดที่ 2: ปรับ opacity เป็น 0.8 เพื่อให้สีมิเตอร์และใบเซอร์เข้มขึ้นชัดเจน */
-      opacity: 0.8; 
-      z-index: 1;
+      opacity: 0.7;
     }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      max-width: 800px;
-    }
-
-    h1 {
-      margin: 0 0 15px 0;
-      font-size: 36px;
-      text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
-      line-height: 1.2;
-    }
-
-    .hero-content p {
-      font-size: 20px;
-      margin: 8px 0;
-      text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
-    }
-
-    /* ===== BUTTONS ===== */
-    .btn {
-      display: block;
-      padding: 18px;
-      margin: 15px auto;
-      text-align: center;
-      border-radius: 50px;
-      font-size: 22px;
-      font-weight: bold;
-      color: white;
-      text-decoration: none;
-      width: 90%;
-      max-width: 350px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-      transition: transform 0.2s;
-    }
-    
-    .btn:active { transform: scale(0.98); }
-    .call { background: #d63031; }
-    .line { background: #2ecc71; }
-
-    /* ===== SECTIONS ===== */
-    .section {
-      background: white;
-      margin: 15px;
-      padding: 25px 20px;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    }
-
-    h2 {
-      color: #0033a0;
-      border-left: 5px solid #ff8c00;
-      padding-left: 10px;
-      margin-top: 0;
-    }
-
-    ul {
-      padding-left: 20px;
-      font-size: 18px;
-    }
-
-    #gallery div {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    #gallery img {
-      width: 48%; 
-      max-width: 300px;
-      aspect-ratio: 1/1;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-
-    iframe {
-      width: 100%;
-      height: 300px;
-      border: 0;
-      border-radius: 10px;
-    }
-
-    /* ===== RESPONSIVE FOR MOBILE ===== */
-    @media (max-width: 600px) {
-      .hero-header {
-        min-height: 380px;
-        padding: 30px 10px;
-      }
-
-      h1 { font-size: 26px; }
-      .hero-content p { font-size: 17px; }
-      .btn { font-size: 19px; padding: 15px; }
-
-      .hero-header::before {
-        background-size: 50%, 30%;
-        /* 👉 จุดที่ 2: ปรับสีเข้มในมือถือด้วย */
-        opacity: 0.8; 
-      }
+    .hero-content { position: relative; z-index: 1; padding: 20px; }
+    h1 { margin:0; font-size:40px; text-shadow: 3px 3px 10px #000; }
+    .hero-content p { font-size:24px; margin:10px 0; text-shadow: 2px 2px 8px #000; }
+    .btn { display:block; padding:18px; margin:20px auto; text-align:center; border-radius:50px; font-size:22px; color:white; text-decoration:none; width:90%; max-width:350px; box-shadow:0 6px 15px rgba(0,0,0,0.3); }
+    .call { background:#d63031; }
+    .line { background:#2ecc71; }
+    .fb { background:#1877f2; } /* สี Facebook */
+    .section { background:white; margin:15px; padding:20px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); }
+    ul { padding-left:20px; font-size:18px; }
+    #gallery div { display:flex; flex-wrap:wrap; justify-content:center; gap:15px; margin-top:20px; }
+    #gallery img { width:100%; max-width:300px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); }
+    iframe { width:100%; height:350px; border:0; border-radius:10px; }
+    @media (max-width:600px) {
+      .hero-header { height: 400px; }
+      h1 { font-size:32px; }
+      .hero-content p { font-size:20px; }
+      .btn { font-size:18px; padding:15px; }
+      #gallery img { max-width:45%; }
+      .hero-header::before { background-size: 60%, 50%; background-position: left center, right center; }
     }
   </style>
 </head>
-
 <body>
 
 <div class="hero-header">
   <div class="hero-content">
-    <h1>Good Service ช่างไฟฟ้า มีนบุรี</h1>
-    <p><strong>ช่างไฟฟ้ามืออาชีพ มีใบอนุญาตฯ</strong></p>
-    <p>ประสบการณ์กว่า 30 ปี • ซ่อมไฟฟ้า • ปั๊มน้ำ</p>
-    <p>📍 โครงการจตุจักร 2 เขตมีนบุรี กรุงเทพฯ</p>
-    <p>⏰ รับงาน: 07.00 – 18.00 น.</p>
+    <h1>Good Service ช่างไฟฟ้า มีนบุรี ซ่อมด่วน</h1>
+    <p>ช่างไฟฟ้ามืออาชีพ มีใบอนุญาตประกอบวิชาชีพ</p>
+    <p>ประสบการณ์กว่า 30 ปี • ซ่อมไฟฟ้า บ้าน อาคาร ระบบน้ำ และปั๊มน้ำ</p>
+    <p>สถานที่ตั้งร้าน: โครงการจตุจักร 2 เขตมีนบุรี กรุงเทพฯ</p>
+    <p>เวลารับงาน: 07.00–18.00 น.</p>
   </div>
 </div>
 
 <a href="tel:+66818527554" class="btn call">📞 โทรเลย: 081-852-7554</a>
 <a href="https://line.me/ti/p/~noip80" class="btn line">💬 แชท LINE: noip80</a>
+<a href="https://www.facebook.com/tragoonaek" class="btn fb">📘 เพจ Facebook</a>
 
 <div class="section">
   <h2>พื้นที่รับงาน</h2>
@@ -189,32 +91,42 @@
     <li>เดินสายไฟใหม่ / แก้ไฟรั่ว ไฟดูด</li>
     <li>ติดตั้งปลั๊กไฟ สวิตช์ไฟ โคมไฟ</li>
     <li>ติดตั้งตู้ไฟ / เบรกเกอร์</li>
+    <li>ซ่อมระบบไฟบ้านและอาคาร</li>
   </ul>
 </div>
 
 <div class="section">
   <h2>ราคาเริ่มต้น</h2>
   <ul>
-    <li>เปิดงาน/ตรวจเช็ค: 400-500 บาท</li>
+    <li>เปิดงาน: 500 บาท</li>
+    <li>ตรวจเช็คหน้างาน: 400 บาท</li>
     <li>แก้ไฟตก ไฟดับ: 300–500 บาท</li>
-    <li>เปลี่ยนสวิตช์ / ปลั๊ก: 150–250 บาท</li>
+    <li>เปลี่ยนสวิตช์ / ปลั๊กไฟ: 150–250 บาท</li>
+    <li>เดินสายไฟใหม่ (ตามระยะงาน)</li>
   </ul>
 </div>
 
+<div class="section">
+  <h2>รีวิวลูกค้า</h2>
+  <p>⭐⭐⭐⭐⭐ — “ช่างมาถึงเร็ว งานเรียบร้อย มืออาชีพมากครับ”</p>
+  <p>⭐⭐⭐⭐⭐ — “ราคาตรงปก ซ่อมไว แนะนำเลยค่ะ”</p>
+</div>
+
 <div class="section" id="gallery">
-  <h2>ผลงานของเรา</h2>
+  <h2>ผลงานติดตั้ง & ซ่อมระบบไฟฟ้า</h2>
+  <p>ตัวอย่างผลงานช่างไฟฟ้า เขตมีนบุรี</p>
   <div>
-    <img src="images/work1.jpg" alt="งานซ่อมไฟ 1">
-    <img src="images/work2.jpg" alt="งานซ่อมไฟ 2">
-    <img src="images/work3.jpg" alt="งานซ่อมไฟ 3">
-    <img src="images/work4.jpg" alt="งานซ่อมไฟ 4">
+    <img src="images/work1.jpg" alt="ช่างไฟฟ้า มีนบุรี – ตัวอย่างงาน 1">
+    <img src="images/work2.jpg" alt="ช่างไฟฟ้า มีนบุรี – ตัวอย่างงาน 2">
+    <img src="images/work3.jpg" alt="ช่างไฟฟ้า มีนบุรี – ตัวอย่างงาน 3">
+    <img src="images/work4.jpg" alt="ช่างไฟฟ้า มีนบุรี – ตัวอย่างงาน 4">
+    <img src="images/work5.jpg" alt="ช่างไฟฟ้า มีนบุรี – ตัวอย่างงาน 5">
   </div>
 </div>
 
 <div class="section">
   <h2>แผนที่ร้าน</h2>
-  <p>คลิกเพื่อดูแผนที่ Google Maps</p>
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3874.321!2d100.7200!3d13.8100!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDQ4JzM2LjAiTiAxMDDCsDQzJzEyLjAiRQ!5e0!3m2!1sth!2sth!4v1" allowfullscreen="" loading="lazy"></iframe>
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.308!2d100.735!3d13.829!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29e8c9b3479d9%3A0x5f0b8c3b8b8b8b8b!2z4Lit4LiU4LiV4Liy4LiB4LiX4Lii4LiB4Lit4Liy4Li14Liq4LiB4Lix4Li44LiB4LmI4Li44LiB4Liq4LiB4Lii4LmM!5e0!3m2!1sth!2sth!4v1734320000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>
 
 </body>
