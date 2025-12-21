@@ -67,7 +67,6 @@
     }
     .stars { color: #f1c40f; font-size: 18px; }
 
-    /* ปรับแต่งส่วนแกลเลอรีรูปผลงานใหม่ */
     #gallery div { 
       display: grid; 
       grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); 
@@ -82,7 +81,9 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
     }
 
-    iframe { width:100%; height:350px; border:0; border-radius:15px; margin-top: 10px; }
+    /* ตกแต่งแผนที่ให้ดูดีขึ้น */
+    .map-container { position: relative; width: 100%; height: 400px; margin-top: 15px; }
+    iframe { width:100%; height:100%; border:0; border-radius:15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 
     @media (max-width:600px) {
       h1 { font-size:24px; }
@@ -165,8 +166,18 @@
 </div>
 
 <div class="section">
-  <h2>แผนที่ร้าน</h2>
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.308!2d100.735!3d13.829!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29e8c9b3479d9%3A0x5f0b8c3b8b8b8b8b!2z4Lit4LiU4LiV4Liy4LiB4LiX4Lii4LiB4Lit4Liy4Li14Liq4LiB4Lix4Li44LiB4LmI4Li44LiB4Liq4LiB4Lii4LmM!5e0!3m2!1sth!2sth!4v1734320000000" allowfullscreen="" loading="lazy"></iframe>
+  <h2>แผนที่ร้าน (โครงการจตุจักร 2 มีนบุรี)</h2>
+  <div class="map-container">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d968.4554366650454!2d100.725021288114!3d13.81473599939527!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDQ4JzUzLjEiTiAxMDDCsDQzJzMyLjAiRQ!5e0!3m2!1sth!2sth!4v1703136000000!5m2!1sth!2sth" 
+      allowfullscreen="" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+  <p style="text-align: center; color: #666; font-size: 14px; margin-top: 10px;">
+    📍 พิกัด: 13.814736, 100.725569 (จตุจักร 2 มีนบุรี)
+  </p>
 </div>
 
 <footer style="text-align: center; padding: 20px; color: #888; font-size: 14px;">
