@@ -88,6 +88,11 @@
     }
     .map-container { position: relative; width: 100%; height: 350px; margin-top: 15px; }
     iframe { width:100%; height:100%; border:0; border-radius:15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    /* Modal QR Code */
+    .qr-modal { display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; }
+    .qr-modal-content { background:white; padding:20px; border-radius:15px; text-align:center; max-width:300px; }
+    .qr-modal-content img { width:100%; border-radius:10px; }
+    .close-modal { font-size:30px; color:#fff; position:absolute; top:20px; right:30px; cursor:pointer; }
     @media (max-width:600px) {
       h1 { font-size:24px; }
       .hero-content p { font-size:16px; }
@@ -114,13 +119,32 @@
 </div>
 
 <a href="tel:+66818527554" class="btn call">📞 โทรเลย: 081-852-7554 (ปรึกษาฟรี)</a>
-<a href="https://line.me/ti/p/~0818527554" class="btn line">💬 เพิ่มเพื่อน LINE (เบอร์โทร)</a>
+<a href="#" class="btn line" onclick="openQR()">💬 สแกน QR Code แอด LINE</a>
 <a href="https://www.facebook.com/tragoonaek" class="btn fb">📘 เพจ Facebook</a>
 <a href="https://maps.app.goo.gl/zRcfgW1N8LeCY7Ue9" target="_blank" class="btn google-review">⭐ ดูรีวิวจาก Google Business</a>
 
 <div class="cta-text">
   สนใจรับบริการ แอดไลน์ส่งรูปสอบถามประเมินราคาก่อนได้ครับ 📸💬
 </div>
+
+<!-- QR Code Modal -->
+<div id="qrModal" class="qr-modal">
+  <span class="close-modal" onclick="closeQR()">×</span>
+  <div class="qr-modal-content">
+    <p style="font-weight:bold; color:#333;">สแกน QR Code แอด LINE ช่างเอก</p>
+    <img src="https://i.postimg.cc/T5GKcrZK/QR-LINE.jpg" alt="QR Code LINE ช่างเอก">
+    <p style="margin-top:15px; font-size:16px;">หรือแอดจากเบอร์: 081-852-7554</p>
+  </div>
+</div>
+
+<script>
+  function openQR() {
+    document.getElementById("qrModal").style.display = "flex";
+  }
+  function closeQR() {
+    document.getElementById("qrModal").style.display = "none";
+  }
+</script>
 
 <div class="section">
   <h2>พื้นที่รับงาน</h2>
