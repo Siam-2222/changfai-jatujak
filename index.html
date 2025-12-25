@@ -127,7 +127,7 @@
   สนใจรับบริการ แอดไลน์ส่งรูปสอบถามประเมินราคาก่อนได้ครับ 📸💬
 </div>
 
-<!-- สไลด์ผลงาน 12 รูปเด่น -->
+<!-- สไลด์ผลงาน 12 รูปเด่น ครบหมด -->
 <div class="slider-container">
   <div class="slider" id="slider">
     <div class="slide"><img src="https://i.postimg.cc/LhBX3qDp/woek20-LE-upscale-balanced-x4.jpg" alt="ผลงาน 1"></div>
@@ -148,14 +148,144 @@
   <div class="dots" id="dots"></div>
 </div>
 
-<!-- Lightbox Modal + QR Modal + script ครบเหมือนเดิม -->
+<!-- Lightbox Modal -->
+<div id="lightbox" class="lightbox">
+  <span class="lightbox-close">×</span>
+  <span class="lightbox-prev">❮</span>
+  <span class="lightbox-next">❯</span>
+  <div class="lightbox-content">
+    <img id="lightbox-img" src="" alt="รูปขยาย">
+  </div>
+  <div class="lightbox-zoom-hint">🔍</div>
+  <div class="lightbox-reset">↺ รีเซ็ต</div>
+</div>
+
+<!-- QR Modal - ลิงก์ใหม่จากพี่ -->
+<div id="qrModal" class="qr-modal">
+  <span class="close-modal" onclick="closeQR()">×</span>
+  <div class="qr-modal-content">
+    <p style="font-weight:bold; color:#333;">สแกน QR Code แอด LINE ช่างเอก</p>
+    <img src="https://i.postimg.cc/R0P6NbXK/line-qrcode.jpg" alt="QR Code LINE ช่างเอก">
+    <p style="margin-top:15px; font-size:16px;">หรือแอดจากเบอร์: 081-852-7554</p>
+  </div>
+</div>
+
+<script>
+  function openQR() {
+    document.getElementById("qrModal").style.display = "flex";
+  }
+  function closeQR() {
+    document.getElementById("qrModal").style.display = "none";
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const slider = document.getElementById('slider');
+    const dotsContainer = document.getElementById('dots');
+    const prev = document.querySelector('.prev');
+    const next = document.querySelector('.next');
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('span');
+      dot.classList.add('dot');
+      dot.onclick = () => goToSlide(i);
+      dotsContainer.appendChild(dot);
+    });
+    const dots = document.querySelectorAll('.dot');
+    dots[0].classList.add('active');
+
+    function showSlide(n) {
+      currentSlide = (n + slides.length) % slides.length;
+      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+      dots.forEach(d => d.classList.remove('active'));
+      dots[currentSlide].classList.add('active');
+    }
+
+    prev.addEventListener('click', () => showSlide(currentSlide - 1));
+    next.addEventListener('click', () => showSlide(currentSlide + 1));
+
+    function goToSlide(n) {
+      showSlide(n);
+    }
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+    slider.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
+    slider.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchEndX < touchStartX - 50) showSlide(currentSlide + 1);
+      if (touchEndX > touchStartX + 50) showSlide(currentSlide - 1);
+    });
+
+    slides.forEach((slide, i) => {
+      slide.addEventListener('click', () => openLightbox(i));
+    });
+  });
+
+  let lightboxCurrent = 0;
+  let zoomLevel = 1.3;
+  const maxZoom = 3.0;
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxClose = document.querySelector('.lightbox-close');
+  const lightboxPrev = document.querySelector('.lightbox-prev');
+  const lightboxNext = document.querySelector('.lightbox-next');
+  const lightboxReset = document.querySelector('.lightbox-reset');
+  const lightboxSlides = document.querySelectorAll('.slide img');
+
+  function openLightbox(index) {
+    lightboxCurrent = index;
+    lightboxImg.src = lightboxSlides[index].src;
+    lightbox.style.display = 'flex';
+    zoomLevel = 1.3;
+    lightboxImg.style.transform = `scale(${zoomLevel})`;
+  }
+
+  lightboxClose.addEventListener('click', () => lightbox.style.display = 'none');
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) lightbox.style.display = 'none';
+  });
+
+  lightboxPrev.addEventListener('click', () => {
+    lightboxCurrent = (lightboxCurrent - 1 + lightboxSlides.length) % lightboxSlides.length;
+    lightboxImg.src = lightboxSlides[lightboxCurrent].src;
+    zoomLevel = 1.3;
+    lightboxImg.style.transform = `scale(${zoomLevel})`;
+  });
+
+  lightboxNext.addEventListener('click', () => {
+    lightboxCurrent = (lightboxCurrent + 1) % lightboxSlides.length;
+    lightboxImg.src = lightboxSlides[lightboxCurrent].src;
+    zoomLevel = 1.3;
+    lightboxImg.style.transform = `scale(${zoomLevel})`;
+  });
+
+  lightboxReset.addEventListener('click', () => {
+    zoomLevel = 1.3;
+    lightboxImg.style.transform = `scale(${zoomLevel})`;
+  });
+
+  lightboxImg.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    if (e.deltaY < 0) {
+      if (zoomLevel < maxZoom) zoomLevel += 0.3;
+    } else {
+      if (zoomLevel > 0.5) zoomLevel -= 0.3;
+    }
+    lightboxImg.style.transform = `scale(${zoomLevel})`;
+  });
+
+  lightboxImg.addEventListener('mouseover', () => lightboxImg.style.cursor = 'zoom-in');
+</script>
+
+<!-- ส่วนด้านล่างครบหมด -->
 
 <div class="section">
   <h2>พื้นที่รับงาน</h2>
   <p>เขตมีนบุรี, ลาดกระบัง, ลาดพร้าว และพื้นที่ใกล้เคียงในกรุงเทพฯ</p>
 </div>
 
-<!-- คอลัมน์ใหม่: งานหน้าร้าน -->
 <div class="section">
   <h2>งานหน้าร้าน จตุจักร 2 มีนบุรี</h2>
   <ul>
