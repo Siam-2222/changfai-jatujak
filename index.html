@@ -75,10 +75,10 @@
     .stars { color: #f1c40f; font-size: 18px; }
     .map-container { position: relative; width: 100%; height: 350px; margin-top: 15px; }
     iframe { width:100%; height:100%; border:0; border-radius:15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-    /* Slider - ปรับให้รูปไม่แตก + สวย */
+    /* Slider */
     .slider-container { max-width: 100%; margin: 20px auto; position: relative; overflow: hidden; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.2); background:#000; }
     .slider { display: flex; transition: transform 0.5s ease; }
-    .slide { min-width: 100%; flex-shrink: 0; display: flex; justify-content: center; align-items: center; }
+    .slide { min-width: 100%; flex-shrink: 0; display: flex; justify-content: center; align-items: center; cursor: pointer; }
     .slide img { max-width: 100%; max-height: 350px; height: auto; object-fit: contain; }
     .prev, .next { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.6); color: white; font-size: 30px; padding: 10px 15px; cursor: pointer; border-radius: 50%; z-index: 10; }
     .prev { left: 10px; }
@@ -87,6 +87,13 @@
     .dot { display: inline-block; width: 12px; height: 12px; background: #bbb; border-radius: 50%; margin: 0 5px; cursor: pointer; }
     .dot.active { background: #ff8c00; }
     @media (max-width:600px) { .slide img { max-height: 220px; } }
+    /* Lightbox Modal */
+    .lightbox { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
+    .lightbox img { max-width: 95%; max-height: 95%; object-fit: contain; }
+    .lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
+    .lightbox-prev, .lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 40px; padding: 20px; cursor: pointer; }
+    .lightbox-prev { left: 20px; }
+    .lightbox-next { right: 20px; }
     /* QR Modal */
     .qr-modal { display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; }
     .qr-modal-content { background:white; padding:20px; border-radius:15px; text-align:center; max-width:300px; }
@@ -120,7 +127,7 @@
   สนใจรับบริการ แอดไลน์ส่งรูปสอบถามประเมินราคาก่อนได้ครับ 📸💬
 </div>
 
-<!-- สไลด์ผลงาน 10 รูปเด่น (เลื่อนมือ + รูปไม่แตก) -->
+<!-- สไลด์ผลงาน 10 รูปเด่น -->
 <div class="slider-container">
   <div class="slider" id="slider">
     <div class="slide"><img src="https://i.postimg.cc/vgs3nf10/work1.webp" alt="ผลงาน 1"></div>
@@ -137,6 +144,14 @@
   <div class="prev">❮</div>
   <div class="next">❯</div>
   <div class="dots" id="dots"></div>
+</div>
+
+<!-- Lightbox Modal (คลิกเด้งเต็มจอ) -->
+<div id="lightbox" class="lightbox">
+  <span class="lightbox-close">×</span>
+  <span class="lightbox-prev">❮</span>
+  <span class="lightbox-next">❯</span>
+  <img id="lightbox-img" src="" alt="รูปขยาย">
 </div>
 
 <!-- QR Modal -->
@@ -157,7 +172,7 @@
     document.getElementById("qrModal").style.display = "none";
   }
 
-  // Slider เลื่อนมืออย่างเดียว
+  // Slider + Lightbox
   document.addEventListener("DOMContentLoaded", () => {
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
@@ -198,10 +213,43 @@
       if (touchEndX < touchStartX - 50) showSlide(currentSlide + 1);
       if (touchEndX > touchStartX + 50) showSlide(currentSlide - 1);
     });
+
+    // คลิกที่สไลด์ → เด้ง lightbox
+    slides.forEach((slide, i) => {
+      slide.addEventListener('click', () => openLightbox(i));
+    });
+  });
+
+  // Lightbox
+  let lightboxCurrent = 0;
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxClose = document.querySelector('.lightbox-close');
+  const lightboxPrev = document.querySelector('.lightbox-prev');
+  const lightboxNext = document.querySelector('.lightbox-next');
+  const lightboxSlides = document.querySelectorAll('.slide img');
+
+  function openLightbox(index) {
+    lightboxCurrent = index;
+    lightboxImg.src = lightboxSlides[index].src;
+    lightbox.style.display = 'flex';
+  }
+
+  lightboxClose.addEventListener('click', () => lightbox.style.display = 'none');
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) lightbox.style.display = 'none';
+  });
+
+  lightboxPrev.addEventListener('click', () => {
+    lightboxCurrent = (lightboxCurrent - 1 + lightboxSlides.length) % lightboxSlides.length;
+    lightboxImg.src = lightboxSlides[lightboxCurrent].src;
+  });
+
+  lightboxNext.addEventListener('click', () => {
+    lightboxCurrent = (lightboxCurrent + 1) % lightboxSlides.length;
+    lightboxImg.src = lightboxSlides[lightboxCurrent].src;
   });
 </script>
-
-<!-- ส่วนด้านล่างครบหมด -->
 
 <div class="section">
   <h2>พื้นที่รับงาน</h2>
