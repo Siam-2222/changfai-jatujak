@@ -87,13 +87,16 @@
     .dot { display: inline-block; width: 12px; height: 12px; background: #bbb; border-radius: 50%; margin: 0 5px; cursor: pointer; }
     .dot.active { background: #ff8c00; }
     @media (max-width:600px) { .slide img { max-height: 220px; } }
-    /* Lightbox Modal */
-    .lightbox { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
-    .lightbox img { max-width: 95%; max-height: 95%; object-fit: contain; }
-    .lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
-    .lightbox-prev, .lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 40px; padding: 20px; cursor: pointer; }
+    /* Lightbox - ขยายใหญ่ + ปุ่มซูม */
+    .lightbox { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; }
+    .lightbox-content { position: relative; max-width: 98%; max-height: 98%; }
+    .lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.3s ease; }
+    .lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; z-index: 1001; }
+    .lightbox-prev, .lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 50px; padding: 20px; cursor: pointer; z-index: 1001; }
     .lightbox-prev { left: 20px; }
     .lightbox-next { right: 20px; }
+    .lightbox-zoom { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.6); border-radius: 30px; padding: 10px 20px; color: white; z-index: 1001; }
+    .lightbox-zoom button { background: none; border: none; color: white; font-size: 24px; cursor: pointer; margin: 0 10px; }
     /* QR Modal */
     .qr-modal { display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; }
     .qr-modal-content { background:white; padding:20px; border-radius:15px; text-align:center; max-width:300px; }
@@ -146,12 +149,19 @@
   <div class="dots" id="dots"></div>
 </div>
 
-<!-- Lightbox Modal (คลิกเด้งเต็มจอ) -->
+<!-- Lightbox Modal (เด้งเต็มจอ + ปุ่มซูม) -->
 <div id="lightbox" class="lightbox">
   <span class="lightbox-close">×</span>
   <span class="lightbox-prev">❮</span>
   <span class="lightbox-next">❯</span>
-  <img id="lightbox-img" src="" alt="รูปขยาย">
+  <div class="lightbox-content">
+    <img id="lightbox-img" src="" alt="รูปขยาย">
+  </div>
+  <div class="lightbox-zoom">
+    <button id="zoom-in">+</button>
+    <button id="zoom-out">−</button>
+    <button id="zoom-reset">↺</button>
+  </div>
 </div>
 
 <!-- QR Modal -->
@@ -172,7 +182,7 @@
     document.getElementById("qrModal").style.display = "none";
   }
 
-  // Slider + Lightbox
+  // Slider + Lightbox + Zoom
   document.addEventListener("DOMContentLoaded", () => {
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
@@ -214,25 +224,31 @@
       if (touchEndX > touchStartX + 50) showSlide(currentSlide - 1);
     });
 
-    // คลิกที่สไลด์ → เด้ง lightbox
+    // คลิกสไลด์ → เด้ง lightbox
     slides.forEach((slide, i) => {
       slide.addEventListener('click', () => openLightbox(i));
     });
   });
 
-  // Lightbox
+  // Lightbox + Zoom
   let lightboxCurrent = 0;
+  let zoomLevel = 1;
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
   const lightboxClose = document.querySelector('.lightbox-close');
   const lightboxPrev = document.querySelector('.lightbox-prev');
   const lightboxNext = document.querySelector('.lightbox-next');
+  const zoomIn = document.getElementById('zoom-in');
+  const zoomOut = document.getElementById('zoom-out');
+  const zoomReset = document.getElementById('zoom-reset');
   const lightboxSlides = document.querySelectorAll('.slide img');
 
   function openLightbox(index) {
     lightboxCurrent = index;
     lightboxImg.src = lightboxSlides[index].src;
     lightbox.style.display = 'flex';
+    zoomLevel = 1;
+    lightboxImg.style.transform = 'scale(1)';
   }
 
   lightboxClose.addEventListener('click', () => lightbox.style.display = 'none');
@@ -243,11 +259,30 @@
   lightboxPrev.addEventListener('click', () => {
     lightboxCurrent = (lightboxCurrent - 1 + lightboxSlides.length) % lightboxSlides.length;
     lightboxImg.src = lightboxSlides[lightboxCurrent].src;
+    zoomLevel = 1;
+    lightboxImg.style.transform = 'scale(1)';
   });
 
   lightboxNext.addEventListener('click', () => {
     lightboxCurrent = (lightboxCurrent + 1) % lightboxSlides.length;
     lightboxImg.src = lightboxSlides[lightboxCurrent].src;
+    zoomLevel = 1;
+    lightboxImg.style.transform = 'scale(1)';
+  });
+
+  zoomIn.addEventListener('click', () => {
+    zoomLevel += 0.5;
+    lightboxImg.style.transform = `scale(${zoomLevel})`;
+  });
+
+  zoomOut.addEventListener('click', () => {
+    zoomLevel = Math.max(0.5, zoomLevel - 0.5);
+    lightboxImg.style.transform = `scale(${zoomLevel})`;
+  });
+
+  zoomReset.addEventListener('click', () => {
+    zoomLevel = 1;
+    lightboxImg.style.transform = 'scale(1)';
   });
 </script>
 
