@@ -87,16 +87,21 @@
     .dot { display: inline-block; width: 12px; height: 12px; background: #bbb; border-radius: 50%; margin: 0 5px; cursor: pointer; }
     .dot.active { background: #ff8c00; }
     @media (max-width:600px) { .slide img { max-height: 300px; } }
-    /* Lightbox - ใหญ่ขึ้น + ซูมละเอียด + ไม่ให้แตกเกินไป */
+    /* Lightbox - แว่นขยาย + ซูมด้วยล้อเมาส์ */
     .lightbox { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; }
     .lightbox-content { position: relative; max-width: 98%; max-height: 98%; }
-    .lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.3s ease; }
+    .lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.3s ease; cursor: zoom-in; }
     .lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; z-index: 1001; }
     .lightbox-prev, .lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 50px; padding: 20px; cursor: pointer; z-index: 1001; }
     .lightbox-prev { left: 20px; }
     .lightbox-next { right: 20px; }
-    .lightbox-zoom { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.6); border-radius: 30px; padding: 12px 24px; color: white; z-index: 1001; }
-    .lightbox-zoom button { background: none; border: none; color: white; font-size: 26px; cursor: pointer; margin: 0 15px; }
+    .lightbox-zoom-hint { position: absolute; bottom: 30px; right: 30px; background: rgba(0,0,0,0.6); border-radius: 50%; width: 50px; height: 50px; display: flex; justify-content: center; align-items: center; color: white; font-size: 30px; z-index: 1001; }
+    .lightbox-reset { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.6); border-radius: 30px; padding: 10px 20px; color: white; font-size: 20px; cursor: pointer; z-index: 1001; }
+    /* QR Modal */
+    .qr-modal { display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; }
+    .qr-modal-content { background:white; padding:20px; border-radius:15px; text-align:center; max-width:300px; }
+    .qr-modal-content img { width:100%; border-radius:10px; }
+    .close-modal { font-size:30px; color:#fff; position:absolute; top:20px; right:30px; cursor:pointer; }
   </style>
 </head>
 <body>
@@ -127,7 +132,7 @@
   สนใจรับบริการ แอดไลน์ส่งรูปสอบถามประเมินราคาก่อนได้ครับ 📸💬
 </div>
 
-<!-- สไลด์ผลงาน 10 รูปเด่น (รูปใหญ่ขึ้น) -->
+<!-- สไลด์ผลงาน 10 รูปเด่น -->
 <div class="slider-container">
   <div class="slider" id="slider">
     <div class="slide"><img src="https://i.postimg.cc/vgs3nf10/work1.webp" alt="ผลงาน 1"></div>
@@ -146,7 +151,7 @@
   <div class="dots" id="dots"></div>
 </div>
 
-<!-- Lightbox Modal (ใหญ่ขึ้น + ซูมละเอียด + ไม่แตกเกินไป) -->
+<!-- Lightbox Modal (แว่นขยาย + ซูมด้วยล้อเมาส์) -->
 <div id="lightbox" class="lightbox">
   <span class="lightbox-close">×</span>
   <span class="lightbox-prev">❮</span>
@@ -154,11 +159,8 @@
   <div class="lightbox-content">
     <img id="lightbox-img" src="" alt="รูปขยาย">
   </div>
-  <div class="lightbox-zoom">
-    <button id="zoom-in">+</button>
-    <button id="zoom-out">−</button>
-    <button id="zoom-reset">↺</button>
-  </div>
+  <div class="lightbox-zoom-hint">🔍</div>
+  <div class="lightbox-reset">↺ รีเซ็ต</div>
 </div>
 
 <!-- QR Modal -->
@@ -179,7 +181,7 @@
     document.getElementById("qrModal").style.display = "none";
   }
 
-  // Slider + Lightbox + Zoom (ปรับละเอียด)
+  // Slider + Lightbox + Zoom ด้วยล้อเมาส์
   document.addEventListener("DOMContentLoaded", () => {
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
@@ -227,25 +229,23 @@
     });
   });
 
-  // Lightbox + Zoom (เริ่มต้นใหญ่ขึ้น + ซูมละเอียด + จำกัดไม่ให้แตก)
+  // Lightbox + Zoom ด้วยล้อเมาส์ + แว่นขยาย
   let lightboxCurrent = 0;
-  let zoomLevel = 1.2; // เริ่มต้นขยายนิดนึงให้ใหญ่ชัด
-  const maxZoom = 2.5; // จำกัดไม่ให้ซูมเกินจนแตก
+  let zoomLevel = 1.3; // เริ่มใหญ่ชัด
+  const maxZoom = 3.0;
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
   const lightboxClose = document.querySelector('.lightbox-close');
   const lightboxPrev = document.querySelector('.lightbox-prev');
   const lightboxNext = document.querySelector('.lightbox-next');
-  const zoomIn = document.getElementById('zoom-in');
-  const zoomOut = document.getElementById('zoom-out');
-  const zoomReset = document.getElementById('zoom-reset');
+  const lightboxReset = document.querySelector('.lightbox-reset');
   const lightboxSlides = document.querySelectorAll('.slide img');
 
   function openLightbox(index) {
     lightboxCurrent = index;
     lightboxImg.src = lightboxSlides[index].src;
     lightbox.style.display = 'flex';
-    zoomLevel = 1.2;
+    zoomLevel = 1.3;
     lightboxImg.style.transform = `scale(${zoomLevel})`;
   }
 
@@ -257,35 +257,37 @@
   lightboxPrev.addEventListener('click', () => {
     lightboxCurrent = (lightboxCurrent - 1 + lightboxSlides.length) % lightboxSlides.length;
     lightboxImg.src = lightboxSlides[lightboxCurrent].src;
-    zoomLevel = 1.2;
+    zoomLevel = 1.3;
     lightboxImg.style.transform = `scale(${zoomLevel})`;
   });
 
   lightboxNext.addEventListener('click', () => {
     lightboxCurrent = (lightboxCurrent + 1) % lightboxSlides.length;
     lightboxImg.src = lightboxSlides[lightboxCurrent].src;
-    zoomLevel = 1.2;
+    zoomLevel = 1.3;
     lightboxImg.style.transform = `scale(${zoomLevel})`;
   });
 
-  zoomIn.addEventListener('click', () => {
-    if (zoomLevel < maxZoom) {
-      zoomLevel += 0.3;
-      lightboxImg.style.transform = `scale(${zoomLevel})`;
-    }
-  });
-
-  zoomOut.addEventListener('click', () => {
-    if (zoomLevel > 0.5) {
-      zoomLevel -= 0.3;
-      lightboxImg.style.transform = `scale(${zoomLevel})`;
-    }
-  });
-
-  zoomReset.addEventListener('click', () => {
-    zoomLevel = 1.2;
+  lightboxReset.addEventListener('click', () => {
+    zoomLevel = 1.3;
     lightboxImg.style.transform = `scale(${zoomLevel})`;
   });
+
+  // ซูมด้วยล้อเมาส์
+  lightboxImg.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    if (e.deltaY < 0) {
+      // หมุนขึ้น = ซูมเข้า
+      if (zoomLevel < maxZoom) zoomLevel += 0.3;
+    } else {
+      // หมุนลง = ซูมออก
+      if (zoomLevel > 0.5) zoomLevel -= 0.3;
+    }
+    lightboxImg.style.transform = `scale(${zoomLevel})`;
+  });
+
+  // Cursor เป็นแว่นขยายเมื่อ hover รูป
+  lightboxImg.addEventListener('mouseover', () => lightboxImg.style.cursor = 'zoom-in');
 </script>
 
 <!-- ส่วนด้านล่างครบหมด (พื้นที่รับงาน, บริการ, รายละเอียดการรับจ้างงาน, รีวิว, แผนที่, footer) -->
