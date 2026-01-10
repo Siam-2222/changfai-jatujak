@@ -61,10 +61,10 @@
     .by-chang { font-size:19px; font-weight:bold; color:#0033a0; }
     .license-highlight { color: #ff0000 !important; font-weight: bold; }
     .free-consult { font-size:21px; font-weight:bold; color:#ff5500; margin:10px 0; }
-    .btn { display:block; padding:16px; margin:12px auto; text-align:center; border-radius:50px; font-size:20px; color:white; text-decoration:none; width:90%; max-width:350px; font-weight:bold; box-shadow:0 6px 15px rgba(0,0,0,0.2); transition: 0.3s; border: 2px solid white; }
+    .btn { display:block; padding:16px; margin:12px auto; text-align:center; border-radius:50px; font-size:20px; color:white; text-decoration:none; width:90%; max-width:350px; font-weight:bold; box-shadow:0 6px 15px rgba(0,0,0,0.2); transition: 0.3s; border: 2px solid white; cursor: pointer; }
     .btn:hover { transform:translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.3); }
     .call { background:#ff8c00; }
-    .line { background:#2ecc71; }
+    .line { background:#06C755; } /* ปรับสีเป็นเขียว LINE */
     .fb { background:#1877f2; }
     .google-review { background:#db4437; }
     .nav-btn { background:#0033a0; }
@@ -84,8 +84,8 @@
     .lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.3s ease; cursor: zoom-in; }
     .lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; z-index: 1001; }
     .qr-modal { display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; }
-    .qr-modal-content { background:white; padding:20px; border-radius:15px; text-align:center; max-width:300px; }
-    .qr-modal-content img { width:100%; border-radius:10px; }
+    .qr-modal-content { background:white; padding:20px; border-radius:15px; text-align:center; max-width:320px; position: relative; }
+    .qr-modal-content img { width:100%; border-radius:10px; margin: 15px 0; border: 1px solid #eee; }
     .close-modal { font-size:30px; color:#fff; position:absolute; top:20px; right:30px; cursor:pointer; }
     .section { background:white; margin:15px auto; padding:25px; border-radius:15px; max-width: 800px; box-shadow:0 5px 15px rgba(0,0,0,0.08); }
     h2 { color:#0033a0; border-left:6px solid #ff8c00; padding-left:15px; margin-top: 0; font-size: 24px; }
@@ -148,8 +148,9 @@
   </ol>
 </div>
 
+<!-- ปุ่มโทรและปุ่ม LINE OA -->
 <a href="tel:+66818527554" class="btn call">📞 โทรเลย: 081-852-7554 (ปรึกษาฟรี)</a>
-<a href="#" class="btn line" onclick="openQR()">💬 สแกน QR Code แอด LINE</a>
+<a href="javascript:void(0)" class="btn line" onclick="openQR()">💬 สแกน QR Code / ทัก LINE OA</a>
 <a href="https://www.facebook.com/tragoonaek" class="btn fb">📘 เพจ Facebook</a>
 <a href="https://maps.app.goo.gl/zRcfgW1N8LeCY7Ue9" target="_blank" class="btn google-review">⭐ ดูรีวิวจาก Google Business</a>
 
@@ -186,12 +187,19 @@
   </div>
 </div>
 
+<!-- Modal แสดง QR Code ตัวใหม่ -->
 <div id="qrModal" class="qr-modal">
   <span class="close-modal" onclick="closeQR()">×</span>
   <div class="qr-modal-content">
-    <p style="font-weight:bold; color:#333;">สแกน QR Code แอด LINE ช่างเอก</p>
-    <img src="https://i.postimg.cc/R0P6NbXK/line-qrcode.jpg" alt="QR Code LINE ช่างเอก">
-    <p style="margin-top:15px; font-size:16px;">หรือแอดจากเบอร์: 081-852-7554</p>
+    <h3 style="color:#06C755; margin-top:0;">LINE Official Account</h3>
+    <p style="font-weight:bold; color:#333;">สแกนเพื่อปรึกษาช่างเอก</p>
+    <!-- 📍 แก้ไขรูป QR Code เป็นตัวใหม่ที่พี่ส่งมา -->
+    <img src="https://qr-official.line.me/gs/M_869tcetc_GW.png?oat_content=qr" alt="QR Code LINE OA ช่างเอก">
+    
+    <div style="margin-top:10px;">
+        <a href="https://line.me/R/ti/p/@869tcetc" style="display:inline-block; background:#06C755; color:white; padding:10px 20px; border-radius:25px; text-decoration:none; font-weight:bold;">กดแอดไลน์ที่นี่</a>
+    </div>
+    <p style="margin-top:15px; font-size:14px; color:#666;">ID: @869tcetc</p>
   </div>
 </div>
 
@@ -304,12 +312,15 @@
     const prev = document.querySelector('.prev');
     const next = document.querySelector('.next');
 
-    slides.forEach((_, i) => {
-      const dot = document.createElement('span');
-      dot.classList.add('dot');
-      dot.onclick = () => showSlide(i);
-      dotsContainer.appendChild(dot);
-    });
+    // สร้างจุดบอกตำแหน่งรูป
+    if (dotsContainer) {
+        slides.forEach((_, i) => {
+          const dot = document.createElement('span');
+          dot.classList.add('dot');
+          dot.onclick = () => showSlide(i);
+          dotsContainer.appendChild(dot);
+        });
+    }
     const dots = document.querySelectorAll('.dot');
     if(dots.length) dots[0].classList.add('active');
 
@@ -320,22 +331,23 @@
       dots[currentSlide].classList.add('active');
     }
 
-    prev.addEventListener('click', () => showSlide(currentSlide - 1));
-    next.addEventListener('click', () => showSlide(currentSlide + 1));
+    if (prev) prev.addEventListener('click', () => showSlide(currentSlide - 1));
+    if (next) next.addEventListener('click', () => showSlide(currentSlide + 1));
 
+    // Lightbox ขยายรูป
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxClose = document.querySelector('.lightbox-close');
 
-    slides.forEach((slide, i) => {
+    slides.forEach((slide) => {
       slide.addEventListener('click', () => {
         lightboxImg.src = slide.querySelector('img').src;
         lightbox.style.display = 'flex';
       });
     });
 
-    lightboxClose.addEventListener('click', () => lightbox.style.display = 'none');
-    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.style.display = 'none'; });
+    if (lightboxClose) lightboxClose.addEventListener('click', () => lightbox.style.display = 'none');
+    if (lightbox) lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.style.display = 'none'; });
   });
 </script>
 </body>
