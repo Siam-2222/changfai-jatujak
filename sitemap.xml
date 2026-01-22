@@ -2,33 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
-  <!-- หน้าแรกของพี่ (ถูกต้องแล้ว) -->
   <url>
     <loc>https://ช่างไฟจตุจักร.com/</loc>
-    <lastmod>2025-12-12</lastmod>
-    <changefreq>daily</changefreq>
+    <lastmod>2026-01-22</lastmod> <!-- วันที่วันนี้ -->
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
 
-    <!-- รูปงานจริง (ผมใส่รูปสวย ๆ ให้ก่อน ถ้าพี่มีรูปจริงส่งมา ผมเปลี่ยนให้) -->
+    <!-- รูปงาน (ใช้ src เดิมจาก postimg ก่อนก็ได้ ถ้ายังไม่อัปโหลดใหม่) -->
     <image:image>
-      <image:loc>https://i.imgur.com/งานซ่อมไฟ1.jpg</image:loc>
-      <image:title>ช่างไฟจตุจักร – ซ่อมตู้ไฟ</image:title>
+      <image:loc>https://i.postimg.cc/LhBX3qDp/woek20-LE-upscale-balanced-x4.jpg</image:loc>
+      <image:title>ช่างไฟฟ้าจตุจักร ซ่อมไฟดับ มีนบุรี</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://i.imgur.com/งานซ่อมปั๊ม2.jpg</image:loc>
-      <image:title>ช่างไฟจตุจักร – ซ่อมปั๊มน้ำ</image:title>
+      <image:loc>https://i.postimg.cc/zHmJFNbp/work1-LE-upscale-balanced-x4.jpg</image:loc>
+      <image:title>ช่างไฟฟ้าจตุจักร ซ่อมปั๊มน้ำ มีนบุรี</image:title>
     </image:image>
-    <image:image>
-      <image:loc>https://i.imgur.com/งานเดินสาย3.jpg</image:loc>
-      <image:title>ช่างไฟจตุจักร – เดินสายใหม่</image:title>
-    </image:image>
-    <!-- เพิ่มได้อีกตามต้องการ -->
+    <!-- เพิ่มรูปอื่น ๆ เดิมทั้ง 12 รูปแบบนี้ (copy จาก slider src เดิม) -->
   </url>
-
-  <!-- หน้าเสมือน (ช่วยให้ Google ดันอันดับเร็วขึ้น) -->
-  <url><loc>https://ช่างไฟจตุจักร.com/#บริการ</loc><priority>0.9</priority></url>
-  <url><loc>https://ช่างไฟจตุจักร.com/#ราคา</loc><priority>0.9</priority></url>
-  <url><loc>https://ช่างไฟจตุจักร.com/#รีวิว</loc><priority>0.8</priority></url>
-  <url><loc>https://ช่างไฟจตุจักร.com/#ติดต่อ</loc><priority>0.8</priority></url>
 
 </urlset>
