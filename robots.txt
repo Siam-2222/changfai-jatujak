@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ช่างไฟจตุจักร.com/sitemap.xml
