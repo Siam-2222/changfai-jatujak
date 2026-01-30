@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.xn--12cldah2e6csb2ie4e6g0b.com"
+        }
+      ],
+      "destination": "https://xn--12cldah2e6csb2ie4e6g0b.com/$1",
+      "permanent": true
+    }
+  ]
+}
