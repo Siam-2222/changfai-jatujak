@@ -10,6 +10,16 @@
       ],
       "destination": "https://www.xn--12cldah2e6csb2ie4e6g0b.com/$1",
       "permanent": true
+    },
+    {
+      "source": "/ช่างไฟฟ้า-มีนบุรี",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/ช่างไฟด่วน",
+      "destination": "/",
+      "permanent": true
     }
   ]
 }
